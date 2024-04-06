@@ -6,7 +6,7 @@ const app = express()
 const server = http.createServer(app)
 const io = new SocketServer(server, {
     cors: {
-        origin: "http://localhost:5173"
+        
     }
 })
 
@@ -15,7 +15,10 @@ io.on("connect", socket => {
 
     socket.on("message", (data)=>{
         console.log(data)
-        socket.broadcast.emit("message", data)
+        socket.broadcast.emit("message", {
+            data,
+            from: socket.id.slice(13)
+        })
     })
 })
 
