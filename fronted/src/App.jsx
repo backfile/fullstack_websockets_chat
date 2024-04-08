@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from "react";
 import io from "socket.io-client"
 
-const socket = io("https://websockets-chat-backend.onrender.com/")
 
-
+const socket = io(import.meta.env.VITE_BACKEND_URL)
 
 
 function App(){
   const [message, setMessage] = useState()
   const [messages, setMesagges] = useState([])
-
-
 
   const handleSubmit = (e) =>{
     e.preventDefault()
