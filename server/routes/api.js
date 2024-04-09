@@ -1,18 +1,8 @@
 import express from "express"
-import { Message } from "../models/Message.js"
+import { apiController } from "../controllers/apiController.js"
 
 export const apiRoutes = express.Router()
 
 
-async function getMessages(){
-    const messages = await Message.find()
-    return messages
-}
-
-
-apiRoutes.get("/getMessages", async (req, res) => {
-    const messages = await getMessages()
-    console.log(messages)
-    res.send(messages)
-})
+apiRoutes.get("/getMessages", apiController.getMessages)
 
