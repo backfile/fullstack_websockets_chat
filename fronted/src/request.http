@@ -1,1 +1,1 @@
-GET http://localhost:3000/getMessages
+GET http://localhost:3000/api/getMessages
