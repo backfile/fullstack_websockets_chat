@@ -2,11 +2,12 @@ import express from "express"
 import {Server as SocketServer} from "socket.io"
 import http from "http"
 import mongoose from "mongoose"
+import cors from "cors"
 
 mongoose.connect("mongodb://localhost:27017")
 
 const messageSchema = new mongoose.Schema({
-    message: {
+    data: {
         type: String,
         required: true
     }
@@ -22,12 +23,14 @@ async function getMessages(){
 
 async function saveMessage(data){
     const message = new Message({
-        message: data
+        data: data
     })
     message.save().then(res => console.log("Usuario creado exitosamente")).catch(error => console.log(error))
 }
 
+
 const app = express()
+app.use(cors())
 const server = http.createServer(app)
 const io = new SocketServer(server, {
     cors: {

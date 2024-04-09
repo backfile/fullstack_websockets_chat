@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import io from "socket.io-client"
 
@@ -5,9 +6,24 @@ import io from "socket.io-client"
 const socket = io(import.meta.env.VITE_BACKEND_URL)
 
 
+
+
 function App(){
   const [message, setMessage] = useState()
   const [messages, setMesagges] = useState([])
+
+  useEffect(()=>{
+    fetch("http://localhost:3000/getMessages").then(data => data.json()).then(dataJson => {
+    const listOfMessages = []
+    dataJson.forEach(msg => {
+      listOfMessages.push(msg)
+      
+    });
+    console.log(listOfMessages)
+    setMesagges(listOfMessages)
+  })
+  }, [])
+  
 
   const handleSubmit = (e) =>{
     e.preventDefault()
