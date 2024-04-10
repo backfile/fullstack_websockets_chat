@@ -1,8 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export function Login(){
     const [username, setUser] = useState(undefined)
     const [password, setPassword] = useState(undefined)
+
+    const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -14,12 +17,10 @@ export function Login(){
           body: JSON.stringify({ username: username, password: password })
         });
         const data = await response.json();
+        navigate("/chat")
         console.log(data);
         
     }
-
-    console.log(user)
-    console.log(password)
 
     return (
         <form id="login-form" onSubmit={handleSubmit}>
