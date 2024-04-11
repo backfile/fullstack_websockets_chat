@@ -1,10 +1,10 @@
-import {Outlet, Navigate } from "react-router-dom"
+import {Outlet, Navigate} from "react-router-dom"
 
-export function ProtectedRoute({canActivate, children}){
+export function ProtectedRoute({canActivate, redirect}){
     if(canActivate){
         return <Outlet></Outlet>
     }else{
-        return <Navigate to={"/login"} replace/>
+        return <Navigate to={redirect} replace/>
     }
 
 }

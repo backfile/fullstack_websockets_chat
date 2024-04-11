@@ -19,7 +19,9 @@ apiController.login = async (req, res) => {
             const accessToken = generateAccessToken(user);
             res.header("authorization", accessToken).json({
                 message: "Usuario autenticado",
-                token: accessToken
+                token: accessToken,
+                user: username,
+                password: password
             });
         } else {
             res.status(401).json({

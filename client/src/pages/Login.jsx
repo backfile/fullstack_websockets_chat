@@ -1,11 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export function Login(){
+export function Login({setRender}){
     const [username, setUser] = useState(undefined)
     const [password, setPassword] = useState(undefined)
-
-    const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -17,13 +15,21 @@ export function Login(){
           body: JSON.stringify({ username: username, password: password })
         });
         const data = await response.json();
-        navigate("/chat")
-        console.log(data);
-        
+        console.log(data, "data")
+        const token = data["token"]
+        const user = data["user"]
+        if(token){
+          localStorage.setItem("token", token)
+          localStorage.setItem("username", user)
+          setRender("NewRender")       
+        }else{
+          console.log("No existe")
+        }
     }
 
     return (
-        <form id="login-form" onSubmit={handleSubmit}>
+      
+      <form id="login-form" onSubmit={handleSubmit}>
         <div>
           <label for="user">Usuario:</label>
           <input onChange={(e)=> setUser(e.target.value)} type="text" id="user" name="user" required/>

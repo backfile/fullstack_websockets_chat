@@ -9,9 +9,13 @@ export function Chat(){
   const [messages, setMesagges] = useState([])
 
 
+  const user = localStorage.getItem("username")
+
+
   useEffect(()=>{
     fetch("http://localhost:3000/api/getMessages").then(data => data.json()).then(dataJson => {
     const listOfMessages = []
+    console.log(dataJson, "datajson")
     dataJson.forEach(msg => {
       listOfMessages.push(msg)
       
