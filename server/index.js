@@ -23,12 +23,16 @@ io.on("connect", socket => {
     console.log("Client connect")
 
     socket.on("message", (data)=>{
-        console.log(data)
+        const message = data.data
+        const username = data.user
         socket.broadcast.emit("message", {
-            data,
-            from: socket.id.slice(13)
+            data: message,
+            user: username
         })
-        saveMessage(data)
+        saveMessage({
+            data: message,
+            user: username
+        })
     })
 })
 

@@ -30,10 +30,10 @@ export function Chat(){
     e.preventDefault()
     const newMesagge = {
       data: message,
-      from: "Me"
+      user: user
     }
     setMesagges([...messages, newMesagge])
-    socket.emit("message", message)
+    socket.emit("message", newMesagge)
     setMessage("")
   }
 
@@ -50,7 +50,7 @@ export function Chat(){
         </div>
         <ul>
           {
-            messages.map(message => <li className={`text-white  my-2 rounded-md text-sm table p-2 ${message.from === "Me" ? "bg-blue-500" : "bg-black ml-auto"}`}> <span className="text-gray-800">{message.from}:</span>{ message.data}</li> )
+            messages.map(message => <li className={`text-white  my-2 rounded-md text-sm table p-2 ${message.user === user ? "bg-blue-500" : "bg-black ml-auto"}`}> <span className="text-gray-800">{message.user}:</span>{ message.data}</li> )
           }
         </ul>
       </form>
