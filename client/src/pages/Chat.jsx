@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { json } from "react-router-dom";
 import io from "socket.io-client"
+import { IoSend } from "react-icons/io5";
 
 const socket = io(import.meta.env.VITE_BACKEND_URL)
 
@@ -20,14 +21,13 @@ export function Chat({setRender}){
     if (scrollableRef.current) {
       scrollableRef.current.scrollTop = scrollableRef.current.scrollHeight;
     }
-  }, [scrollableRef.current]);
+  }, [scrollableRef.current, messages]);
 
   useEffect(()=>{
     fetch("http://localhost:3000/api/getMessages", {headers:{
       "authorization" : token
     }}).then(data => data.json()).then(dataJson => {
     const listOfMessages = []
-    console.log(dataJson, "datajson")
     dataJson.forEach(msg => {
       listOfMessages.push(msg)
       
@@ -58,7 +58,7 @@ export function Chat({setRender}){
         'Content-Type': 'application/json'
       }
     })
-
+    setMessage("")
     
   }
 
@@ -67,18 +67,18 @@ export function Chat({setRender}){
   })
 
   return(
-    <div className="h-screen flex justify-center items-center bg-zinc-800 ">
+    <div className="h-screen flex bg-zinc-800 flex-col px-[10%]">
       <button onClick={handleLogout}>Logout</button>
-      <form action="" onSubmit={handleSubmit} className="bg-zinc-900 p-10 rounded-md ">
-        <div className="flex gap-2 justify-center mb-10">
-          <input className="text-center rounded-md" onChange={e => setMessage(e.target.value)} type="text" value={message} placeholder="Tu mensaje"/>
-          <button className="bg-blue-300 p-1 rounded-md">Send</button>
-        </div>
-        <ul ref={scrollableRef} className="h-[200px] overflow-y-scroll">
+        <ul ref={scrollableRef} className="a overflow-y-scroll p-5 h-full">
           {
-            messages.map(message => <li className={`text-white  mb-2 rounded-md text-sm table p-2 ${message.user === user ? "bg-blue-500" : "bg-black ml-auto"}`}> <span className="text-gray-800">{message.user}:</span>{ message.data}</li> )
+            messages.map(message => <li className={`text-white  mb-2 rounded-md text-xl table p-2.5 ${message.user === user ? "bg-blue-500" : "bg-slate-700 ml-auto"}`}> <span className="text-black font-semibold ">{message.user}:</span>{ message.data}</li> )
           }
         </ul>
+      <form action="" onSubmit={handleSubmit} className="m-4 rounded-md ">  
+        <div className="flex gap-2  items-center">
+          <input className="rounded-md w-full text-start p-2" onChange={e => setMessage(e.target.value)} type="text" value={message} placeholder="Tu mensaje"/>
+          <button><IoSend size={30} color="rgb(59 130 246)"/></button>  
+        </div>
       </form>
     </div>
   )

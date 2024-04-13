@@ -7,5 +7,5 @@ export async function getMessages(){
 
 export async function saveMessage(data){
     const message = new Message(data)
-    message.save().then(res => console.log("Usuario creado exitosamente")).catch(error => console.log(error))
+    message.save().catch(error => console.log(error))
 }
