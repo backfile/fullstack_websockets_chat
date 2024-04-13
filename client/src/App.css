@@ -1,20 +1,14 @@
 
-
-a::-webkit-scrollbar {
-  width: 10px;
+*::-webkit-scrollbar {
+  width: 12px;               /* width of the entire scrollbar */
 }
 
-/* Track */
-a::-webkit-scrollbar-track {
-  background: #f1f1f1;
+*::-webkit-scrollbar-track {
+  background: rgb(39 39 42 / var(--tw-bg-opacity));        /* color of the tracking area */
 }
 
-/* Handle */
-a::-webkit-scrollbar-thumb {
-  background: #888;
+*::-webkit-scrollbar-thumb {
+  background-color: rgb(20, 20, 19);    /* color of the scroll thumb */
+  border-radius: 20px;       /* roundness of the scroll thumb */
+  border: 3px solid rgb(20, 20, 19);  /* creates padding around scroll thumb */
 }
-
-/* Handle on hover */
-a::-webkit-scrollbar-thumb:hover {
-  background: #555;
-} 

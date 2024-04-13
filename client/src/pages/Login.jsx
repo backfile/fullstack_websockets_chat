@@ -30,17 +30,16 @@ export function Login({setRender}){
     }
 
     return (
-      
-      <form id="login-form" onSubmit={handleSubmit}>
-        <div>
-          <label for="user">Usuario:</label>
-          <input onChange={(e)=> setUser(e.target.value)} type="text" id="user" name="user" required/>
-        </div>
-        <div>
-          <label for="password">Contraseña:</label>
-          <input onChange={(e) => setPassword(e.target.value)} type="password" id="password" name="password" required/>
-        </div>
-        <button type="submit">Iniciar sesión</button>
-      </form>
+      <main className="bg-[url('https://i.redd.it/6kjb54r4nzob1.jpg')] bg-cover h-screen flex items-center justify-center">
+        <form id="login-form" onSubmit={handleSubmit} className="bg-zinc-800 bg-opacity-90 p-10 rounded-md shadow-2xl ">
+          <div className="mb-4">
+            <input onChange={(e)=> setUser(e.target.value)} placeholder="Usuario" type="text" id="user" name="user" required className="p-2 rounded focus:outline-none"/>
+          </div>
+          <div>
+            <input onChange={(e) => setPassword(e.target.value)} placeholder="Contraseña" type="password" id="password" name="password" required className="p-2 rounded focus:outline-none"/>
+          </div>
+          <button className="mt-7 bg-blue-600 text-white p-2 rounded-md w-full font-semibold shadow-md" type="submit">Iniciar sesión</button>
+        </form>
+      </main>
     )
 }
