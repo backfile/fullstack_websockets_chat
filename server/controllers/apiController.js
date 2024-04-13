@@ -1,6 +1,7 @@
 import { getMessages } from "../services/messageService.js"
 import { checkCredentials } from "../services/checkLoginCredentials.js"
 import { generateAccessToken } from "../services/generateAccesTokenService.js"
+import { saveMessage } from "../services/messageService.js"
 
 export const apiController = {}
 
@@ -9,9 +10,21 @@ apiController.getMessages = async (req, res) => {
     res.send(messages)
 }
 
+apiController.saveMessages = async (req, res) =>{
+    const { data, user } = req.body;
+    console.log(req.body)
+
+    saveMessage({
+        data: data,
+        user: user
+    })
+    res.status(200).json({message: "saved"})
+}
+
 apiController.login = async (req, res) => {
     const { username, password } = req.body;
     const user = { username: username };
+    console.log(req.body)
 
     try {
         const isValid = await checkCredentials(username, password);
@@ -34,6 +47,8 @@ apiController.login = async (req, res) => {
         });
     }
 }
+
+
 
 
 

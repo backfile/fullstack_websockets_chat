@@ -7,6 +7,7 @@ export function Login({setRender}){
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+
         const response = await fetch('http://localhost:3000/api/login', {
           method: 'POST',
           headers: {
@@ -14,6 +15,7 @@ export function Login({setRender}){
           },
           body: JSON.stringify({ username: username, password: password })
         });
+        
         const data = await response.json();
         console.log(data, "data")
         const token = data["token"]

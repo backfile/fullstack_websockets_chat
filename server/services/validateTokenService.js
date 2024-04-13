@@ -2,7 +2,6 @@ import jwt from "jsonwebtoken"
 
 export function validateToken(req, res, next){
     const accessToken = req.headers["authorization"]
-    console.log(accessToken)
     if (!accessToken){
         return res.status(401).res.json({"access": "denied"})
     }else{

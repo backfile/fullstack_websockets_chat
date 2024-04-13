@@ -4,7 +4,7 @@ import http from "http"
 import mongoose from "mongoose"
 import cors from "cors"
 import { apiRoutes } from "./routes/api.js"
-import { saveMessage } from "./services/messageService.js"
+
 
 const app = express()
 const server = http.createServer(app)
@@ -26,10 +26,6 @@ io.on("connect", socket => {
         const message = data.data
         const username = data.user
         socket.broadcast.emit("message", {
-            data: message,
-            user: username
-        })
-        saveMessage({
             data: message,
             user: username
         })

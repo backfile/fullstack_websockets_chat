@@ -26,7 +26,7 @@ function App(){
     <BrowserRouter>
       <Routes>
         <Route element={<ProtectedRoute canActivate={tokenExistAndStillValid} redirect={"/login"}/>}>
-          <Route path='/' element={<Chat/>}/>
+          <Route path='/' element={<Chat setRender={setRender}/>}/>
         </Route>
         <Route element={<ProtectedRoute canActivate={!tokenExistAndStillValid} redirect={"/"}/>}>
           <Route path='/login' element={<Login setRender={setRender}/>}/>
