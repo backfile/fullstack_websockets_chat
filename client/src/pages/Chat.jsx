@@ -24,7 +24,7 @@ export function Chat({setRender}){
 
 
   useEffect(()=>{
-    fetch("http://localhost:3000/api/getMessages", {headers:{
+    fetch("https://websockets-chat-backend.onrender.com/api/getMessages", {headers:{
       "authorization" : token
     }}).then(data => data.json()).then(dataJson => {
     const listOfMessages = []
@@ -50,7 +50,7 @@ export function Chat({setRender}){
     setMesagges([...messages, newMesagge])
     socket.emit("message", newMesagge)
 
-    fetch("http://localhost:3000/api/saveMessages",{
+    fetch("https://websockets-chat-backend.onrender.com/api/saveMessages",{
       method: "POST",
       body: JSON.stringify({data: message, user: user}),
       headers:{

@@ -38,7 +38,7 @@ export function Login({setRender}){
           <div>
             <input onChange={(e) => setPassword(e.target.value)} placeholder="Contraseña" type="password" id="password" name="password" required className="p-2 rounded focus:outline-none"/>
           </div>
-          <button className="mt-7 bg-blue-600 text-white p-2 rounded-md w-full font-semibold shadow-md" type="submit">Iniciar sesión</button>
+          <button onClick={handleSubmit} className="mt-7 bg-blue-600 text-white p-2 rounded-md w-full font-semibold shadow-md" type="submit">Iniciar sesión</button>
         </form>
       </main>
     )
