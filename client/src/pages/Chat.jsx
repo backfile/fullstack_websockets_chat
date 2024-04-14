@@ -41,8 +41,15 @@ export function Chat({setRender}){
     setRender("")
   }
 
+  const preHandleSubmit = (e) =>{
+    if(message == ""){
+      return
+    }else{
+      handleSubmit(e)
+    }
+  }
+
   const handleSubmit = (e) =>{
-    if(message == "") return
     e.preventDefault()
     const newMesagge = {
       data: message,
@@ -76,7 +83,7 @@ export function Chat({setRender}){
           }
     
         </ul>
-        <form action="" onSubmit={handleSubmit} className="m-4 rounded-md ">  
+        <form action="" onSubmit={preHandleSubmit} className="m-4 rounded-md ">  
           <div className="flex gap-2 items-center">
             <input className="rounded-md w-full text-start p-2 bg bg-zinc-900 border-[0] focus:outline-[0]  transition-all text-white" onChange={e => setMessage(e.target.value)} type="text" value={message} placeholder="Tu mensaje"/>
             <button><IoSend size={30} color="rgb(59 130 246)"/></button>  
