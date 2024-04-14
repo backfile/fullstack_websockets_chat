@@ -8,7 +8,7 @@ import { apiRoutes } from "./routes/api.js"
 
 const app = express()
 const server = http.createServer(app)
-mongoose.connect("mongodb://localhost:27017").catch(error => console.log(error))
+mongoose.connect("mongodb+srv://franco:.r.pVX2yr7gs9q_@cluster0.n1qfscn.mongodb.net/").catch(error => console.log(error))
 
 app.use(express.json())
 app.use(cors())

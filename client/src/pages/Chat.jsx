@@ -66,16 +66,17 @@ export function Chat({setRender}){
   })
 
   return(
-    <main className="h-screen bg-[url('https://i.redd.it/6kjb54r4nzob1.jpg')] flex justify-center items-center">
+    <main className="h-screen w-screen bg-[url('https://i.redd.it/6kjb54r4nzob1.jpg')] flex justify-center items-center">
       <button onClick={handleLogout} className="bg-red-500 fixed bottom-4 left-5 p-2 font-semibold rounded-md text-white hover:scale-125 transition-all">Logout</button>
-      <div className="max-h-[80%] flex bg-zinc-800 bg-opacity-90 flex-col w-[85%] m-auto shadow-black shadow-2xl rounded-xl ">
-        <ul ref={scrollableRef} className="overflow-y-scroll p-7 max-h-full">
+      <div className="max-h-[80%]  min-h-[80%] flex bg-zinc-800 bg-opacity-90 flex-col w-[85%] m-auto shadow-black shadow-2xl rounded-xl justify-between">
+        <ul ref={scrollableRef} className="overflow-y-scroll p-7 max-w-full flex flex-col max-h-[100%] min-h-[100%]">
           {
-            messages.map(message => <li className={`text-white  mb-2 rounded-md text-xl table p-2.5  ${message.user === user ? "bg-blue-500" : "bg-black ml-auto"}`}> <span className="text-zinc-800 font-semibold ">{message.user}:</span>{ message.data}</li> )
+            messages.map(message => <h1 className={`text-white inlineinline-table	 mb-2 rounded-md md:text-xl text-md  p-2.5 break-words ${message.user === user ? "" : "ml-auto"}`}> <span className={` ${message.user === user ? "text-blue-500 font-bold" : "text-red-500 font-bold"}`}>{message.user}: </span>{ message.data}</h1> )
           }
+    
         </ul>
         <form action="" onSubmit={handleSubmit} className="m-4 rounded-md ">  
-          <div className="flex gap-2  items-center">
+          <div className="flex gap-2 items-center">
             <input className="rounded-md w-full text-start p-2 bg bg-zinc-900 border-[0] focus:outline-[0]  transition-all text-white" onChange={e => setMessage(e.target.value)} type="text" value={message} placeholder="Tu mensaje"/>
             <button><IoSend size={30} color="rgb(59 130 246)"/></button>  
           </div>
