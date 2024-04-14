@@ -42,6 +42,7 @@ export function Chat({setRender}){
   }
 
   const handleSubmit = (e) =>{
+    if(message == "") return
     e.preventDefault()
     const newMesagge = {
       data: message,
