@@ -42,6 +42,7 @@ export function Chat({setRender}){
   }
 
   const preHandleSubmit = (e) =>{
+    e.preventDefault()
     if(message == ""){
       return
     }else{
