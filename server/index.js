@@ -3,12 +3,14 @@ import {Server as SocketServer} from "socket.io"
 import http from "http"
 import mongoose from "mongoose"
 import cors from "cors"
+import dotenv from 'dotenv'; 
 import { apiRoutes } from "./routes/api.js"
+dotenv.config();
 
 
 const app = express()
 const server = http.createServer(app)
-mongoose.connect("mongodb+srv://franco:.r.pVX2yr7gs9q_@cluster0.n1qfscn.mongodb.net/").catch(error => console.log(error))
+mongoose.connect(process.env.MONGODB_KEY).catch(error => console.log(error))
 
 app.use(express.json())
 app.use(cors())

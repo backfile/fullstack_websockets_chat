@@ -22,20 +22,12 @@ function App(){
       return(false)
     }
 }
-
   return(
-    <BrowserRouter>
-      <Routes>
-        <Route element={<ProtectedRoute canActivate={tokenExistAndStillValid} redirect={"/login"}/>}>
-          <Route path='/' element={<Chat setRender={setRender}/>}/>
-        </Route>
-        <Route element={<ProtectedRoute canActivate={!tokenExistAndStillValid} redirect={"/"}/>}>
-          <Route path='/login' element={<Login setRender={setRender}/>}/>
-        </Route>
-      </Routes>
-    </BrowserRouter>
-
+    <div>
+      {tokenExistAndStillValid ? <Chat setRender={setRender}></Chat> : <Login setRender={setRender}></Login>}
+    </div>
   )
+
 }
 
 export default App
