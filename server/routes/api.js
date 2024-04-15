@@ -11,7 +11,7 @@ apiRoutes.post("/saveMessages", validateToken, apiController.saveMessages)
 
 apiRoutes.post("/login", apiController.login)
 
-apiRoutes.post("/ping", apiController.ping)
+apiRoutes.get("/ping", apiController.ping)
 
 
 
