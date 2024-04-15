@@ -7,7 +7,7 @@ const socket = io(import.meta.env.VITE_BACKEND_URL)
 
 
 export function Chat({setRender}){
-  const [message, setMessage] = useState()
+  const [message, setMessage] = useState("")
   const [messages, setMesagges] = useState([])
   const scrollableRef = useRef(null);
   
@@ -44,9 +44,17 @@ export function Chat({setRender}){
   const preHandleSubmit = (e) =>{
     e.preventDefault()
     if(message == ""){
-      return
+      return 
     }else{
       handleSubmit(e)
+    }
+  }
+
+  const handleChange = (e) =>{
+    if(e.target.value == " "){
+      e.target.value = ""
+    }else{
+      setMessage(e.target.value)
     }
   }
 
@@ -86,7 +94,7 @@ export function Chat({setRender}){
         </ul>
         <form action="" onSubmit={preHandleSubmit} className="m-4 rounded-md ">  
           <div className="flex gap-2 items-center">
-            <input className="rounded-md w-full text-start p-2 bg bg-zinc-900 border-[0] focus:outline-[0]  transition-all text-white" onChange={e => setMessage(e.target.value)} type="text" value={message} placeholder="Tu mensaje"/>
+            <input className="rounded-md w-full text-start p-2 bg bg-zinc-900 border-[0] focus:outline-[0]  transition-all text-white" onChange={handleChange} type="text" value={message} placeholder="Tu mensaje"/>
             <button><IoSend size={30} color="rgb(59 130 246)"/></button>  
           </div>
         </form>
