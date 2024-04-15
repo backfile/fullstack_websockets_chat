@@ -88,7 +88,7 @@ export function Chat({setRender}){
       <div className="max-h-[80%]  min-h-[80%] flex bg-zinc-800 bg-opacity-90 flex-col w-[85%] m-auto shadow-black shadow-2xl rounded-xl justify-between">
         <ul ref={scrollableRef} className="overflow-y-scroll p-7 max-w-full flex flex-col max-h-[100%] min-h-[100%]">
           {
-            messages.map(message => <h1 className={`text-white inlineinline-table	 mb-2 rounded-md md:text-xl text-md  p-2.5 break-words ${message.user === user ? "" : "ml-auto"}`}> <span className={` ${message.user === user ? "text-blue-500 font-bold" : "text-red-500 font-bold"}`}>{message.user}: </span>{ message.data}</h1> )
+            messages.map(message => <h1 className={`text-white inlineinline-table	 mb-2 rounded-md md:text-xl text-md  p-2.5 break-words ${message.user === user ? "" : ""}`}> <span className={` ${message.user === user ? "text-blue-500 font-bold" : "text-red-500 font-bold"}`}>{message.user}: </span>{ message.data}</h1> )
           }
     
         </ul>
