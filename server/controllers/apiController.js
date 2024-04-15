@@ -21,6 +21,10 @@ apiController.saveMessages = async (req, res) =>{
     res.status(200).json({message: "saved"})
 }
 
+apiController.ping = (req, res) =>{
+    res.json({ping: "ping"})
+}
+
 apiController.login = async (req, res) => {
     const { username, password } = req.body;
     const user = { username: username };
