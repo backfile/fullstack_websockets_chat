@@ -12,3 +12,37 @@
   border-radius: 20px;       /* roundness of the scroll thumb */
   border: 3px solid rgb(20, 20, 19);  /* creates padding around scroll thumb */
 }
+
+@keyframes render {
+  0% {
+    transform: scale(0); /* Estado inicial */
+    opacity: 0;
+  }
+  50% {
+    transform: scale(0.5); /* Estado intermedio */
+  }
+  100% {
+    transform: scale(1); /* Estado final */
+    opacity: 1;
+  }
+}
+
+
+@keyframes skeleton {
+  0%{
+    background-color: hsl(200,20%,10%);
+  }
+  100%{
+    background-color: hsl(200,20%,65%);
+  }
+  
+}
+
+.animacion {
+  animation: render 250ms ease-in-out ; /* Utiliza los keyframes definidos */
+}
+
+.skeleton{
+  opacity: 0.7;
+  animation: skeleton 1s linear infinite alternate;
+}

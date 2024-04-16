@@ -9,6 +9,7 @@ const socket = io(import.meta.env.VITE_BACKEND_URL)
 export function Chat({setRender}){
   const [message, setMessage] = useState("")
   const [messages, setMesagges] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
   const scrollableRef = useRef(null);
   
 
@@ -30,7 +31,7 @@ export function Chat({setRender}){
     const listOfMessages = []
     dataJson.forEach(msg => {
       listOfMessages.push(msg)
-      
+      setIsLoading(false)
     });
     setMesagges(listOfMessages)
   })
@@ -85,7 +86,7 @@ export function Chat({setRender}){
   return(
     <main className="h-screen w-screen bg-[url('https://i.redd.it/6kjb54r4nzob1.jpg')] flex justify-center items-center">
       <button onClick={handleLogout} className="bg-red-500 fixed bottom-4 left-5 p-2 font-semibold rounded-md text-white hover:scale-125 transition-all">Logout</button>
-      <div className="max-h-[80%]  min-h-[80%] flex bg-zinc-800 bg-opacity-90 flex-col w-[85%] m-auto shadow-black shadow-2xl rounded-xl justify-between">
+      <div  className={`max-h-[80%] transition-all min-h-[80%] flex bg-zinc-800 bg-opacity-90 flex-col w-[85%] m-auto shadow-black shadow-2xl rounded-xl justify-between ${isLoading ? "skeleton" : ""}`}>
         <ul ref={scrollableRef} className="overflow-y-scroll p-7 max-w-full flex flex-col max-h-[100%] min-h-[100%]">
           {
             messages.map(message => <h1 className={`text-white inlineinline-table	 mb-2 rounded-md md:text-xl text-md  p-2.5 break-words ${message.user === user ? "" : ""}`}> <span className={` ${message.user === user ? "text-blue-500 font-bold" : "text-red-500 font-bold"}`}>{message.user}: </span>{ message.data}</h1> )
